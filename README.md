@@ -16,7 +16,7 @@
 ## 项目启动
 ### 创建界面：
 ```
-  "pages":[
+  "pages":[
     "pages/home/home",
     "pages/menu/menu",
     "pages/location/location",
@@ -24,7 +24,7 @@
     "pages/order/order"
   ],
 ```
-只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包括了.wxml、.wxss、.json、.js这样四个文件。wxml就是界面结构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
+只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包扩了.wxml 、 .wxss 、 .json 、 .js这样四个文件。wxml就是界面结构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
 
 ### 配置标题栏的样式：
 ```
@@ -69,7 +69,7 @@
 在app.json中编写以上代码，这是小程序自带的功能，只需要照搬照抄就可以了，极其方便，效果如下：
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/GIF.gif)
 ### 数据请求
-```
+```javascript
 /**
    * 生命周期函数--监听页面显示
    */
@@ -127,7 +127,7 @@ data是每个页面.js文件中的一个键，用来储存本页面需要用到�
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/home.gif)
 ### swiper控件应用
 首先是两页标签的滑动切换,这里使用的是swiper，它是一款小程序自带的滑块组件，使用掌握起来非常简单，具体代码如下
-```
+```html
   <swiper class="categoryList" indicator-dots="true" 
   indicator-color="rgba(228,228,228,1)" 
   indicator-active-color="#FECA49">
@@ -146,7 +146,7 @@ data是每个页面.js文件中的一个键，用来储存本页面需要用到�
 ```
 swiper标签就是滑块组件的主体，表示可以滑动的区域，其中indicator-dots属性是设置设置点是否显示。接下来swiper-item标签在swiper之中表示的是每一个用来作为滑动的页面。这里用<block wx:for="{{categoryList}}" wx:key="">包裹着swiper-item表示的是使用categoryList对象数组中数据来循环渲染swiper-item，swiper-item的数量取决于categoryList中有多少组数据。之后在swiper-item中的block标签表示的是在一个页面中用categoryList.item中的数据循环渲染多个类似的标签，这些标签就是效果图中的类别项，总共两页，每页八个。这就是swiper和循环渲染的一些基本用法。
  ### 弹出层的实现
- ```
+ ```html
  <view class="mask"
 hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
   <template is="sort_list" data="{{selected,sortSelected}}"/>
@@ -185,7 +185,7 @@ hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
 先上效果图：<br>
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/location.gif)<br>
 页面结构：
-```
+```html
 <view class="header">
 <view class="search-input">
   <input placeholder="请输入收货地址"
@@ -212,7 +212,7 @@ bindtap="getLocation">点击定位当前位置</view>
 <view class="userTel"></view>
 ```
 这个界面主要涉及到的就是弹出层和百度地图API的调用，调用方法可以查看百度地图API，具体点击事件代码如下，
-```
+```javascript
 getLocation: function () {
     wx.getLocation({
       type: 'gcj02',
@@ -263,7 +263,7 @@ search: function (text){
  效果图如下：<br>
  ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/order.gif)<br>
  页面结构如下：
- ```
+ ```html
  <import src = "../common/orderPage.wxml"/>
 <import src = "../common/commentPage.wxml"/>
 <view class="container" disable-scroll="true">
@@ -286,7 +286,7 @@ search: function (text){
 </view>
  ```
  菜单页面如下：
- ```
+ ```html
  <template name="orderPage">
     <scroll-view class="orderPage-sideBar" 
     bindscrolltolower="lower" 
@@ -337,7 +337,7 @@ search: function (text){
  ```
 ### tab切换
 这个界面最主要的功能就是tab切换，和点菜功能。其中tab切换其实用的还是swiper，因为swiper有一个current属性表示的是swiper当下显示的页面的序号，只需要将tab中被激活的项与swiper的页面互相绑定就可以了，具体代码如下：
-```
+```javascript
   turnPage: function (e) {
     this.setData({
       currentPage: e.currentTarget.dataset.index
