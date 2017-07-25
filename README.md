@@ -3,21 +3,21 @@
 赚钱、赚钱、赚钱...当然现在只是学习阶段，所以先仿一个高端产品来挑战自我吧。说到高端，自然然而的就想到了美团。之后噼里啪啦一顿忙乎，终于做出了一点样子
 来，希望能为同为小白的同学们提供一点帮助和参考，现在我们进入正题。
 ## 开发工具
-1.微信web开发者工具： 官网就可以下载，相信大家早就安装好了吧。<br>
-2.小程序 API： 官网提供的文档，不懂得地方多看两遍基本上就可以解决了。<br>
-3.[Easy Mock](https://www.easy-mock.com/)： 一个能够提供虚拟数据接口的网站，在前端独自开发的情况下，实在是再好不过的工具了。<br>
+* 微信web开发者工具： 官网就可以下载，相信大家早就安装好了吧。<br>
+* 小程序 API： 官网提供的文档，不懂得地方多看两遍基本上就可以解决了。<br>
+* [Easy Mock](https://www.easy-mock.com/)： 一个能够提供虚拟数据接口的网站，在前端独自开发的情况下，实在是再好不过的工具了。<br>
 ## 功能
-已经实现的功能：<br>
-1.主界面<br>
-2.订单界面<br>
-3.用户界面<br>
-4.点菜功能<br>
-5.定位功能<br>
-未实现的功能：<br>
-数都数不清<br>
+### 已经实现的功能：
+* 主界面
+* 订单界面
+* 用户界面
+* 点菜界面
+* 定位界面
+### 未实现的功能：
+* 数都数不清
 毕竟大企业的产品，不是说模仿就模仿的，所以只实现了一些主要的功能，和一些能力之内的功能...
 ## 项目启动
-* 创建界面：
+### 创建界面：
 ```
   "pages":[
     "pages/home/home",
@@ -30,7 +30,7 @@
    只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包括了.wxml、.wxss、.json、.js这样四个文件。wxml就是界面结
   构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
 
-* 配置标题栏的样式：
+### 配置标题栏的样式：
 ```
   "window":{
     "navigationBarTitleText": "美团外卖+",
@@ -40,7 +40,7 @@
 ```
    同样是在app.json中配置，其他页面的标题栏都以此为例。
  
-* 添加底栏：
+### 添加底栏：
 ```
 "tabBar": {
     "color": "#272636",
@@ -72,7 +72,7 @@
 ```
    在app.json中编写以上代码，这是小程序自带的功能，只需要照搬照抄就可以了，极其方便，效果如下：
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/GIF.gif)
-* 数据请求
+### 数据请求
 ```
 /**
    * 生命周期函数--监听页面显示
@@ -126,12 +126,12 @@ data是每个页面.js文件中的一个键，用来储存本页面需要用到�
   }
 }
 ```
-* 主界面功能<br>
+## 主界面<br>
 效果图：<br>
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/home.gif)
-1.swiper控件应用<br>
+### swiper控件应用
    首先是两页标签的滑动切换,这里使用的是swiper，它是一款小程序自带的滑块组件，使用掌握起来非常简单，具体代码如下
-   ```
+```
   <swiper class="categoryList" indicator-dots="true" 
   indicator-color="rgba(228,228,228,1)" 
   indicator-active-color="#FECA49">
@@ -147,13 +147,12 @@ data是每个页面.js文件中的一个键，用来储存本页面需要用到�
     </swiper-item>
     </block>
   </swiper>
-   ```
+```
    swiper标签就是滑块组件的主体，表示可以滑动的区域，其中indicator-dots属性是设置设置点是否显示。接下来swiper-item标签在swiper之中表示的是每一个用
 来作为滑动的页面。这里用<block wx:for="{{categoryList}}" wx:key="">包裹着swiper-item表示的是使用categoryList对象数组中数据来循环渲染swiper-
 item，swiper-item的数量取决于categoryList中有多少组数据。之后在swiper-item中的block标签表示的是在一个页面中用categoryList.item中的数据循环渲染多
 个类似的标签，这些标签就是效果图中的类别项，总共两页，每页八个。这就是swiper和循环渲染的一些基本用法。
-<br>
- 2.弹出层的实现
+ ### 弹出层的实现
  ```
  <view class="mask"
 hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
@@ -191,9 +190,9 @@ hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
 出来的内容了。其中bindtap属性就是点击事件的绑定了，具体的点击事件需要在.js文件中设置。值得一提的是，bindtap事件是会把当前标签受到的点击冒泡给它的父
 容器，这就相当与同时点击了他的父容器，如果想阻止冒泡的话就需要使用catchtap。
 
-* 定位界面实现<br>
+## 定位界面
 先上效果图：<br>
-![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/location.gif)
+![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/location.gif)<br>
 页面结构：
 ```
 <view class="header">
@@ -269,9 +268,105 @@ search: function (text){
     })
   },
 ```
-* 点菜功能实现<br>
+## 点菜界面<br>
  效果图如下：<br>
- 
+ ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/order.gif)<br>
+ 页面结构如下：
+ ```
+ <import src = "../common/orderPage.wxml"/>
+<import src = "../common/commentPage.wxml"/>
+<view class="container" disable-scroll="true">
+  <view class="header">
+    <block wx:for="{{swiperTitle}}" wx:key="">
+      <view class="title {{index==currentPage?'selected':''}}" data-index="{{index}}"
+      bindtap="turnPage">{{item.text}}</view>
+    </block> 
+  </view>
+  <swiper class="swiper" current="{{currentPage}} 
+  bindchange="turnTitle">
+    <swiper-item id="orderPage">
+      <template is="orderPage" data="{{menu,selected,howMuch,cost,pullBar}}"/>
+    </swiper-item>
+    <swiper-item id="commentPage">
+      <template is="commentPage" data="{{categoryList}}"/>
+    </swiper-item>
+    <swiper-item id="restaurantPage"></swiper-item>
+  </swiper>
+</view>
+ ```
+ 菜单页面如下：
+ ```
+ <template name="orderPage">
+    <scroll-view class="orderPage-sideBar" 
+    bindscrolltolower="lower" 
+    scroll-y="true">
+      <block wx:for="{{menu}}" wx:key="">
+        <view class="menuList">
+          <view class="menu {{index==selected?'selected':''}}" 
+          data-index="{{index}}" 
+          catchtap="turnMenu">{{item.typeName}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <scroll-view class="foodList" scroll-y="true">
+      <view class="title">{{menu[selected].typeName}}</view>
+      <block wx:for="{{menu[selected].menuContent}}" wx:key="">
+        <view class="food">
+          <image class="img" src="{{item.src}}"></image>
+          <view class="food-info">
+            <view class="name">{{item.name}}</view>
+            <view class="sales">月售 {{item.sales}} 赞 {{item.rating}}
+            </view>
+            <view class="price">￥  {{item.price}}</view>
+          </view>
+          <view class="food-numb">
+            <view class="remove" 
+            bindtap="removeFromTrolley"
+            hidden="{{item.numb==0}}" 
+            data-index="{{index}}">-</view>
+            <text class="text" 
+            hidden="{{item.numb==0}}">{{item.numb}}</text>
+            <view class="add" 
+            bindtap="addToTrolley" data-index="{{index}}">+</view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="footer {{cost!=0?'active':''}}">
+      <view class="howMuch">
+        <view class="img" style="background:{{cost!=0?'#FFD161':'#E7E7E7'}};">
+          <image src="/pages/images/trolley.png" style="width:60rpx;height:60rpx;"></image>
+        </view>
+        <view class="cost" hidden="{{cost==0}}">￥{{cost}}</view>
+        <view class="free">免配送费</view>
+      </view>
+      <view class="pay">{{cost!=0?'去结算':'15元起送'}}</view>      
+    </view>
+</template>
+ ```
+### tab切换
+这个界面最主要的功能就是tab切换，和点菜功能。其中tab切换其实用的还是swiper，因为swiper有一个current属性表示的是swiper当下显示的页面
+的序号，只需要将tab中被激活的项与swiper的页面互相绑定就可以了，具体代码如下：
+```
+  turnPage: function (e) {
+    this.setData({
+      currentPage: e.currentTarget.dataset.index
+    })
+  },
+  turnTitle: function (e) {
+    if(e.detail.source=="touch"){//判断是否是滑动引起的界面切换
+      this.setData({
+        currentPage: e.detail.current
+      })
+    }
+  },
+```
+当点击title中的项时获取当前序号，再将它赋值给current，当手指滑动swiper时触发bindchange事件，获取当前页面序号，使相应序号的title处于被选中的状态。
+有一个值得注意的地方是当点击title中的项时也会触发swiper的bindchange事件，但是我们只想让它在滑动swiper时触发，否则就会出现setData过于频繁的警告，所
+以我们需要在turnTitle中加一段判断语句，判断页面滑动的原因是否为滑动，如果不是则不执行下面的语句。
+点菜功能只是数据绑定界面的更加复杂的应用，而且还有许多不妥之处，这里就不作说明了，有兴趣的朋友可以去[我的GitHub]
+(https://github.com/tzc123/wx_project_meituan)看详细的代码。
+## 总结
 
 
 
