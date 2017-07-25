@@ -11,7 +11,7 @@
 1.主界面<br>
 2.订单界面<br>
 3.用户界面<br>
-4.点单功能<br>
+4.点菜功能<br>
 5.定位功能<br>
 未实现的功能：<br>
 数都数不清<br>
@@ -27,8 +27,8 @@
     "pages/order/order"
   ],
 ```
-   只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包括了*.wxml、*.wxss、*.json、*.js这样四个文件。wxml就是界
-面结构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
+   只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包括了.wxml、.wxss、.json、.js这样四个文件。wxml就是界面结
+  构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
 
 * 配置标题栏的样式：
 ```
@@ -126,7 +126,7 @@ data是每个页面.js文件中的一个键，用来储存本页面需要用到�
   }
 }
 ```
-* 主界面功能
+* 主界面功能<br>
 效果图：<br>
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/home.gif)
 1.swiper控件应用<br>
@@ -191,13 +191,87 @@ hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
 出来的内容了。其中bindtap属性就是点击事件的绑定了，具体的点击事件需要在.js文件中设置。值得一提的是，bindtap事件是会把当前标签受到的点击冒泡给它的父
 容器，这就相当与同时点击了他的父容器，如果想阻止冒泡的话就需要使用catchtap。
 
-* 定位界面实现
+* 定位界面实现<br>
 先上效果图：<br>
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/location.gif)
+页面结构：
+```
+<view class="header">
+<view class="search-input">
+  <input placeholder="请输入收货地址"
+   bindinput="input"></input>
+   </view>
+  <view class="search-btn">搜索</view>
+</view>
+<view class="result-container" hidden="{{hidden}}">
+<scroll-view scroll-y="true"class="search-result-list" hidden="{{hidden}}">
+  <block wx:for="{{locationList}}" wx:key="">
+    <view class="search-result" bindtap="onTap" data-key="{{item.address}}">{{item.name}}
+      <view class="search-result-desc">{{item.address}}</view>
+    </view>
+  </block>
+</scroll-view>
+</view>
+<view class="getLocation"
+bindtap="getLocation">点击定位当前位置</view>
+<view class="addLocation">新增收货地址
+  <view class="addLocation-icon">+</view>
+</view>
+<view class="myLocation">我的收货地址</view>
+<view class="LocatonInfo"></view>
+<view class="userTel"></view>
+```
+这个界面主要涉及到的就是弹出层和百度地图API的调用，调用方法可以查看百度地图API，具体点击事件代码如下，
+```
+getLocation: function () {
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        wx.request({
+          url: 'http://api.map.baidu.com/geocoder/v2/?ak=btsVVWf0TM1zUBEbzFz6QqWF&coordtype=gcj02ll&location=' + latitude + ',' + longitude + '&output=json&pois=0',
+          method: "get",
+          success: function (res) {
+            console.log(res.data.result.formatted_address)
+            wx.setStorageSync('location', 
+            res.data.result.formatted_address.substr(res.data.result.formatted_address.indexOf('市') + 1, 10))
+          }
+        })
+      }
+    })
+    wx.switchTab({
+      url: '/pages/home/home'
+    })
+  },
+input: function (e){
+    if(e.detail.value){
+      this.setData({
+        hidden: false
+      })
+      this.search(e.detail.value);
+    }else{
+      this.setData({
+        hidden: true
+      })
+    }
+  },
+search: function (text){
+    var that = this;
+    wx.request({
+      url: 'http://api.map.baidu.com/place/v2/search?query=' + text +'&page_size=20&page_num=0&scope=2&region=南昌&output=json&ak=btsVVWf0TM1zUBEbzFz6QqWF',
+      success: function(res){
+        console.log(res);
+        that.setData({
+          locationList:res.data.results
+        })
+      }
+    })
+  },
+```
+* 点菜功能实现<br>
+ 效果图如下：<br>
  
- 
- 
-
 
 
 
