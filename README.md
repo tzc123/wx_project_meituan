@@ -364,8 +364,7 @@ search: function (text){
 当点击title中的项时获取当前序号，再将它赋值给current，当手指滑动swiper时触发bindchange事件，获取当前页面序号，使相应序号的title处于被选中的状态。
 有一个值得注意的地方是当点击title中的项时也会触发swiper的bindchange事件，但是我们只想让它在滑动swiper时触发，否则就会出现setData过于频繁的警告，所
 以我们需要在turnTitle中加一段判断语句，判断页面滑动的原因是否为滑动，如果不是则不执行下面的语句。
-点菜功能只是数据绑定界面的更加复杂的应用，而且还有许多不妥之处，这里就不作说明了，有兴趣的朋友可以去[我的GitHub]
-(https://github.com/tzc123/wx_project_meituan)看详细的代码。
+点菜功能只是数据绑定界面的更加复杂的应用，而且还有许多不妥之处，这里就不作说明了，有兴趣的朋友可以去[我的GitHub(https://github.com/tzc123/wx_project_meituan)看详细的代码。
 ## 总结
 
 
