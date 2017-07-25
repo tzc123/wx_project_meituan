@@ -71,7 +71,7 @@
   }
 ```
 在app.json中编写以上代码，这是小程序自带的功能，只需要照搬照抄就可以了，极其方便，效果如下：
-![gif](https://github.com/tzc123/wx_project/raw/master/gif/GIF.gif)
+![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/GIF.gif)
 
 
 
