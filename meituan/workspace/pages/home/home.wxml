@@ -1,0 +1,110 @@
+<import src = "../common/sort_list.wxml"/>
+<view class="mask"
+hidden="{{mask1Hidden}}" bindtap="mask1Cancel">
+  <template is="sort_list" data="{{selected,sortSelected}}"/>
+  <view class="overall-sort-list">
+    <block wx:for="{{sortList}}" wx:key="">
+    <view class="overall-sort" data-index="{{index}}" 
+    bindtap="sortSelected">{{item.sort}}</view>
+    </block> 
+  </view>
+</view>
+<view class="mask"
+hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
+  <template is="sort_list" data="{{selected,sortSelected}}"/>
+  <scroll-view class="filterList" scroll-y="true" >
+    <view class="filterList-characteristic-title">商家特色</view>
+    <view class="filterList-characteristic-items">
+      <block wx:for="{{characteristicList}}" wx:key="">
+        <view class="filterList-characteristic-item {{characteristicSelected[index]==true?'characteristic-selected':''}}"
+        catchtap="characteristicSelected" data-index="{{index}}">{{item.text}}</view>
+      </block>
+    </view>
+    <view class="filterList-discount-title">优惠活动(单选)</view>
+    <view class="filterList-discount-items">
+      <block wx:for="{{discountList}}" wx:key="">
+        <view class="filterList-discount-item {{discountSelected==index?'discount-selected':''}}"
+        catchtap="discountSelected" data-index="{{index}}">
+          <text class="filterList-discount-item-icon"
+          style="background:{{item.iconColor}}">{{item.icon}}</text>
+        {{item.text}}</view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="filterList-footer">
+    <view class="filterList-footer-delect"
+    catchtap="clearSelectedNumb">清除筛选</view>
+    <view class="filterList-footer-finish" bindtap="finish">完成 
+    <view class="filterList-footer-finish-number" hidden="{{selectedNumb==0}}">{{selectedNumb}}
+    </view>
+    </view>
+  </view>
+</view>
+<scroll-view bindscrolltolower="lower" 
+class="scroll-restaurants-list" 
+scroll-y="true" 
+style="height:100%">
+  <view class="heard">
+    <navigator url="/pages/location/location">
+      <view class="heard-location">
+        <image src="/pages/images/location.png" 
+        class="heard-location-icon"/>
+        <text class="heard-location-text">{{location}}</text>
+      </view>
+    </navigator>
+    <view class="heard-search">
+      <image src="/pages/images/search.png" class="heard-search-icon"/>
+      鸡排
+    </view>
+  </view>
+  <swiper class="categoryList" indicator-dots="true" 
+  indicator-color="rgba(228,228,228,1)" 
+  indicator-active-color="#FECA49">
+    <block wx:for="{{categoryList}}" wx:key="">
+    <swiper-item>
+    <block wx:for="{{item}}" wx:key="">
+      <view class="category-info">
+        <image src="{{item.src}}" 
+        class="category-image"></image>
+        <view class="category-text">{{item.name}}</view>
+      </view>
+    </block>
+    </swiper-item>
+    </block>
+  </swiper>
+  <view class="header-title">附近商家</view>
+  <template is="sort_list" data="{{selected,sortSelected}}"/>
+    <view class="restaurantsList">
+    <block wx:for="{{restaurant}}" wx:key="">
+      <navigator url="/pages/menu/menu">
+        <view class="restaurants-list">
+          <view class="restaurants-info-image">
+            <image src="{{item.src}}" class="restaurants-image"/>
+          </view>
+          <view class="restaurants-info">
+            <view class="restaurants-info-name">{{item.name}}</view>
+            <view class="restaurants-info-rating">
+              <view
+              class="restaurants-info-rating-stars">★ ★ ★ ★</view>
+              <view 
+              class="restaurants-info-rating-sales">月售 {{item.sales}}单</view>
+            </view>
+            <view class="restaurants-info-price">
+              起送 {{item.initial_price}}¥ | 配送 {{item.distribution_price}}¥
+            </view>
+        </view>
+        <view class="restaurants-distribution">
+          <view 
+          class="restaurants-distribution-distance">
+            {{item.distance}}
+          </view>
+          <view 
+          class="restaurants-distribution-time">
+            {{item.time}} 分钟
+          </view>
+        </view>
+       </view>
+      </navigator>
+    </block>
+  </view>
+</scroll-view>

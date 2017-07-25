@@ -1,0 +1,255 @@
+.container{
+  height: 100%;
+}
+.header{
+  display: flex;
+  justify-content: space-around;
+}
+.header .title{
+  height: 70rpx;
+  width: 180rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.header .title.selected{
+  border-bottom: 7rpx solid #FFd161;
+  font-weight: 600;
+}
+.swiper{
+  height: 1130rpx;
+}
+#orderPage{
+  display: flex;
+  height: auto;
+}
+#commentPage{
+  height: auto;
+}
+#restaurantPage{
+  background: yellow;
+}
+.orderPage-sideBar{
+  width: 150rpx;
+  height: 1130rpx;
+  background: #F4F4F4;
+}
+.menuList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menuList .menu{
+  height: 100rpx;
+  width: 130rpx;
+  position: relative;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  border-bottom: 1rpx dashed #ECECEC; 
+}
+.selected.menu::before{
+  content: "";
+  position: absolute;
+  left: -10rpx;
+  top: 32rpx;
+  height: 36rpx;
+  width: 7rpx;
+  background: #FFD161;
+}
+.foodList{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ECECEC;
+}
+.foodList .title{
+  padding: 15rpx;
+  height: 25rpx;
+  line-height: 25rpx;
+  font-size: 25rpx;
+}
+.food{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 170rpx;
+  border-bottom: 1rpx solid #ECECEC; 
+  background: white;
+}
+.food::before{
+  content: "";
+  width: 15rpx;
+  height: 100%;
+  left: -15rpx;
+  top: 0;
+  border: 1px solid white;
+}
+.food .img{
+  width: 120rpx;
+  height: 120rpx;
+}
+.food-info{
+  padding-left: 15rpx;
+  line-height: 48rpx;
+  flex: 1;
+}
+.food .name{
+  font-size: 30rpx;
+}
+.food .sales{
+  font-size: 25rpx;
+  color: #ACACAC;
+}
+.food .price{
+  font-size: 30rpx;
+  color: red;
+}
+.food-numb{
+  height: 40rpx;
+  width: 130rpx;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 95rpx;
+  margin-right: 30rpx;
+  line-height: 40rpx;
+  font-size: 25rpx;
+}
+.food-numb .add,.food-numb .remove{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 30rpx;
+  text-align: center; 
+}
+.food-numb .add{
+  font-size: 35rpx;
+  line-height: 37rpx;
+  font-weight: 700;
+  background: #FFD161;
+  margin-left: 15rpx;
+}
+.food-numb .remove{
+  margin-right: 15rpx;
+  line-height: 28rpx;
+  font-size: 60rpx;
+  font-weight: 500;
+  box-sizing: border-box;
+  border: 2rpx;
+  border-style: solid; 
+  border-color: #B0B0B0;
+  color: #B0B0B0;
+}
+.footer{
+  display: flex;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom:0;
+  height: 100rpx;
+}
+.footer .img{
+  position: absolute;
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 100rpx;
+  left: 20rpx;
+  top: -45rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#orderPage .howMuch{
+  position: relative;
+  flex: 1;
+  font-size: 28rpx;
+  background: white;
+  line-height: 100rpx;
+  padding-left: 130rpx;
+}
+.footer .pay{
+  width: 200rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+  font-size: 30rpx;
+  background: #CCCCCC;
+}
+#orderPage .cost{
+  margin-top: 10rpx;
+  color: red;
+  font-size: 50rpx;
+  line-height: 50rpx;
+  height: 50rpx;
+  width: 100rpx;
+}
+.footer.active .free{
+   font-size: 25rpx;
+   width: 100rpx;
+   height: 40rpx;
+   line-height: 40rpx;
+}
+.footer.active .pay{
+  background: #FFD161;
+  color: black;
+}
+.commentPage-header{
+  height: 190rpx;
+  display: flex;
+  padding-bottom: 30rpx;
+  border-bottom: 20rpx solid #F4F4F4; 
+}
+ .commentPage-score{
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 55rpx;
+  color: #FFB001;
+  border-right: 1px solid #E8E8E8;
+}
+.commentPage-score .overall{
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #9D9D9D
+}
+.commentPage-score .rate{
+  line-height: 50rpx;
+  font-size: 25rpx;
+  color: #E8E8E8;
+}
+.commentPage-rating{
+  padding-top: 20rpx; 
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30rpx;
+  color: #9D9D9D;
+}
+.commentPage-rating .restaurant,.commentPage-rating .distribute{
+  display: flex;
+  width: 450rpx;
+}
+.commentPage-rating .distribute{
+  margin-top:  40rpx;
+}
+.commentPage-rating .stars{
+  margin:0 40rpx;
+}
+.commentPage-category{
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 20rpx solid #F4F4F4; 
+}
+.commentPage-category .category-item{
+  height: 40rpx;
+  line-height: 40rpx;
+  margin: 20rpx 10rpx;
+  font-size: 28rpx;
+  color: #9D9D9D;
+  border: 1px solid #ECECEC;
+  border-radius: 40rpx;
+  padding: 5rpx 15rpx;
+}

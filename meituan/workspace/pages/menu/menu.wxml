@@ -1,0 +1,20 @@
+<import src = "../common/orderPage.wxml"/>
+<import src = "../common/commentPage.wxml"/>
+<view class="container" disable-scroll="true">
+  <view class="header">
+    <block wx:for="{{swiperTitle}}" wx:key="">
+      <view class="title {{index==currentPage?'selected':''}}" data-index="{{index}}"
+      bindtap="turnPage">{{item.text}}</view>
+    </block> 
+  </view>
+  <swiper class="swiper" current="{{currentPage}} 
+  bindchange="turnTitle">
+    <swiper-item id="orderPage">
+      <template is="orderPage" data="{{menu,selected,howMuch,cost,pullBar}}"/>
+    </swiper-item>
+    <swiper-item id="commentPage">
+      <template is="commentPage" data="{{categoryList}}"/>
+    </swiper-item>
+    <swiper-item id="restaurantPage"></swiper-item>
+  </swiper>
+</view>

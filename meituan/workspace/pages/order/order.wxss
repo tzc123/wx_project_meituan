@@ -1,0 +1,78 @@
+/* pages/order/order.wxss */
+.container{
+  height: 100%;
+}
+.orderList{
+  width: 100%;
+  padding: 15rpx;
+  border: 100rpx 0;
+  border-style: solid;
+  border-color: #ECECEC;
+}
+.order-title{
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #ECECEC;
+  display: flex;
+  justify-content: space-between;
+}
+.order-title-restaurantName{
+  width: 200rpx;
+  height: 100%;
+  font-size: 30rpx;
+}
+.order-title-state{
+  width: 130rpx;
+  color: #D2D2D2;
+  margin-right: 20rpx;
+  font-size: 28rpx;
+}
+.order-content{
+  height: 250rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #ECECEC; 
+}
+.order-content-restaurantImg{
+  width: 200rpx;
+  height: 125rpx;
+}
+.order-content-info{
+  font-size: 25rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.order-content-info-price,.order-content-info-date,
+.order-content-info-howToDistribute{
+  height: 42rpx;
+  line-height: 42rpx;
+  margin-left: 30rpx;
+}
+.order-content-info-price{
+  color: red;
+  font-size: 30rpx;
+}
+.order-footer{
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 28rpx;
+}
+.order-footer-goToComment,.order-footer-orderAgain{
+  margin-top: 15rpx;
+  margin-right: 40rpx; 
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 200rpx;
+  text-align: center;
+  border: 1rpx solid #ECECEC;
+}
+.order-footer-orderAgain{
+  margin-right: 20rpx;
+}
+.order-footer-goToComment{
+  background: #FFD161;
+}

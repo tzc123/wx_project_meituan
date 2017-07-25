@@ -1,0 +1,24 @@
+<view class="header">
+<view class="search-input">
+  <input placeholder="请输入收货地址"
+   bindinput="input"></input>
+   </view>
+  <view class="search-btn">搜索</view>
+</view>
+<view class="result-container" hidden="{{hidden}}">
+<scroll-view scroll-y="true"class="search-result-list" hidden="{{hidden}}">
+  <block wx:for="{{locationList}}" wx:key="">
+    <view class="search-result" bindtap="onTap" data-key="{{item.address}}">{{item.name}}
+      <view class="search-result-desc">{{item.address}}</view>
+    </view>
+  </block>
+</scroll-view>
+</view>
+<view class="getLocation"
+bindtap="getLocation">点击定位当前位置</view>
+<view class="addLocation">新增收货地址
+  <view class="addLocation-icon">+</view>
+</view>
+<view class="myLocation">我的收货地址</view>
+<view class="LocatonInfo"></view>
+<view class="userTel"></view>

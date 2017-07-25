@@ -1,0 +1,47 @@
+<template name="orderPage">
+    <scroll-view class="orderPage-sideBar" 
+    bindscrolltolower="lower" 
+    scroll-y="true">
+      <block wx:for="{{menu}}" wx:key="">
+        <view class="menuList">
+          <view class="menu {{index==selected?'selected':''}}" 
+          data-index="{{index}}" 
+          catchtap="turnMenu">{{item.typeName}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <scroll-view class="foodList" scroll-y="true">
+      <view class="title">{{menu[selected].typeName}}</view>
+      <block wx:for="{{menu[selected].menuContent}}" wx:key="">
+        <view class="food">
+          <image class="img" src="{{item.src}}"></image>
+          <view class="food-info">
+            <view class="name">{{item.name}}</view>
+            <view class="sales">月售 {{item.sales}} 赞 {{item.rating}}
+            </view>
+            <view class="price">￥  {{item.price}}</view>
+          </view>
+          <view class="food-numb">
+            <view class="remove" 
+            bindtap="removeFromTrolley"
+            hidden="{{item.numb==0}}" 
+            data-index="{{index}}">-</view>
+            <text class="text" 
+            hidden="{{item.numb==0}}">{{item.numb}}</text>
+            <view class="add" 
+            bindtap="addToTrolley" data-index="{{index}}">+</view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="footer {{cost!=0?'active':''}}">
+      <view class="howMuch">
+        <view class="img" style="background:{{cost!=0?'#FFD161':'#E7E7E7'}};">
+          <image src="/pages/images/trolley.png" style="width:60rpx;height:60rpx;"></image>
+        </view>
+        <view class="cost" hidden="{{cost==0}}">￥{{cost}}</view>
+        <view class="free">免配送费</view>
+      </view>
+      <view class="pay">{{cost!=0?'去结算':'15元起送'}}</view>      
+    </view>
+</template>

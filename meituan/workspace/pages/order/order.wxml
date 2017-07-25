@@ -1,0 +1,27 @@
+<scroll-view class="container"
+scroll-y="true">
+  <block wx:for="{{orderList}}" wx:key="">
+    <view class="orderList">
+      <view class="order-title">
+        <view class="order-title-restaurantName">
+          {{item.restaurantName}}</view>
+        <view class="order-title-state">{{item.state}}</view>
+      </view>
+      <view class="order-content">
+        <image class="order-content-restaurantImg"
+         src="http://i4.piimg.com/601998/9ce47f2f19d7717d.jpg"></image>
+        <view class="order-content-info">
+          <view class="order-content-info-price">￥ {{item.price}}</view>
+          <view class="order-content-info-date">
+          {{item.date}} {{item.time}}</view>
+          <view class="order-content-info-howToDistribute">
+          由 {{item.howToDistribute}} 提供服务</view>
+        </view>
+      </view>
+      <view class="order-footer">
+        <view class="order-footer-orderAgain">再来一单</view>
+        <view class="order-footer-goToComment">去评论</view>
+      </view>
+    </view>
+  </block> 
+</scroll-view>
