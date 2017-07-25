@@ -27,8 +27,8 @@
     "pages/order/order"
   ],
 ```
-只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包括了 *.wxml、*.wxss、*.json、*.js这样四个文件。wxml就是界面
-结构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
+   只要编辑app.js中的pages属性，就会在项目目录下的pages文件夹里自动生成一个文件夹，里面包括了*.wxml、*.wxss、*.json、*.js这样四个文件。wxml就是界
+面结构文件，wxss就是样式文件,js是用来存放js代码并实现界面逻辑的地方，至于*.json就是用来配置页面属性的地方，如：修改标题栏的颜色，和文字。
 
 * 配置标题栏的样式：
 ```
@@ -38,7 +38,7 @@
     "navigationBarBackgroundColor": "#FFC640"
   },
 ```
-同样是在app.json中配置，其他页面的标题栏都以此为例。
+   同样是在app.json中配置，其他页面的标题栏都以此为例。
  
 * 添加底栏：
 ```
@@ -70,7 +70,7 @@
     ]
   }
 ```
-在app.json中编写以上代码，这是小程序自带的功能，只需要照搬照抄就可以了，极其方便，效果如下：
+   在app.json中编写以上代码，这是小程序自带的功能，只需要照搬照抄就可以了，极其方便，效果如下：
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/GIF.gif)
 * 数据请求
 ```
@@ -127,7 +127,7 @@ data是每个页面.js文件中的一个键，用来储存本页面需要用到�
 }
 ```
 * 主界面功能
-效果图：
+效果图：<br>
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/home.gif)
 1.swiper控件应用<br>
    首先是两页标签的滑动切换,这里使用的是swiper，它是一款小程序自带的滑块组件，使用掌握起来非常简单，具体代码如下
@@ -187,12 +187,12 @@ hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
   </view>
 </view>
  ```
- 最外层的mask类的view就是一个遮罩层，用来覆盖之前的界面形成遮罩的效果，并在上面显示新的界面也就是弹出层。以上的代码就是效果图中点击筛选按钮所呈现出来
-的内容了。其中bindtap属性就是点击事件的绑定了，具体的点击事件需要在.js文件中设置。值得一提的是，bindtap事件是会把当前标签受到的点击冒泡给它的父容
- 器，这就相当与同时点击了他的父容器，如果想阻止冒泡的话就需要使用catchtap。
+   最外层的mask类的view就是一个遮罩层，用来覆盖之前的界面形成遮罩的效果，并在上面显示新的界面也就是弹出层。以上的代码就是效果图中点击筛选按钮所呈现
+出来的内容了。其中bindtap属性就是点击事件的绑定了，具体的点击事件需要在.js文件中设置。值得一提的是，bindtap事件是会把当前标签受到的点击冒泡给它的父
+容器，这就相当与同时点击了他的父容器，如果想阻止冒泡的话就需要使用catchtap。
 
 * 定位界面实现
-先上效果图：
+先上效果图：<br>
 ![image](https://github.com/tzc123/wx_project_meituan/raw/master/gif/location.gif)
  
  
