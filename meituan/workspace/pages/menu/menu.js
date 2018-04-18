@@ -1,4 +1,7 @@
 // pages/menu/menu.js
+const util = require('../../utils/util.js');
+const api = require('../../config/api.js');
+
 Page({
 
   /**
@@ -22,13 +25,13 @@ Page({
     cost:0,
     pullBar: false
   },
-  pullBar: function () {
+  pullBar() {
     this.setData({
       pullBar: !this.data.pullBar
     })
   }
   ,
-  addToTrolley: function (e) {
+  addToTrolley(e) {
     var info = this.data.menu;
     info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb++;
     this.setData({
@@ -36,7 +39,7 @@ Page({
       menu: info,
     })
   },
-  removeFromTrolley: function (e) {
+  removeFromTrolley(e) {
     var info = this.data.menu;
     if (info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb!=0){
       info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb--;
@@ -46,19 +49,19 @@ Page({
       })
     }
   },
-  turnPage: function (e) {
+  turnPage(e) {
     this.setData({
       currentPage: e.currentTarget.dataset.index
     })
   },
-  turnTitle: function (e) {
+  turnTitle(e) {
     if(e.detail.source=="touch"){
       this.setData({
         currentPage: e.detail.current
       })
     }
   },
-  turnMenu: function (e) {
+  turnMenu(e) {
     this.setData({
       selected: e.currentTarget.dataset.index
     })
@@ -67,16 +70,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
     var that = this;
-    wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/menu",
-      method: "GET",
-      success: function (res) {
-        that.setData({
-          menu: res.data,
+    util.request(api.menu).then(res => {
+        this.setData({
+          menu: res
         })
-      }
     });
   },
 
