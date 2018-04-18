@@ -1,4 +1,8 @@
 // pages/home/home.js
+const util = require('../../utils/util.js');
+const api = require('../../config/api.js');
+
+
 Page({
 
   /**
@@ -123,39 +127,33 @@ Page({
     selectedNumb: 0,
     sortSelected: "综合排序"
   },
-  finish: function () {
-    var that = this;
-    wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/filter",
-      method: "GET",
-      success: function (res) {
-        that.setData({
-          restaurant: res.data.data.restaurant,
+  finish() {
+    util.request(api.filter).then(res => {
+      if (res.success) {
+        this.setData({
+          restaurant: res.data.restaurant
         })
       }
     });
   },
-  sortSelected: function (e) {
-    var that = this;
-    wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/overAll",
-      method: "GET",
-      success: function (res) {
-        that.setData({
-          restaurant: res.data.data.restaurant,
-          sortSelected: that.data.sortList[e.currentTarget.dataset.index].sort
+  sortSelected(e) {
+    util.request(api.overAll).then(res => {
+      if (res.success) {
+        this.setData({
+          restaurant: res.data.restaurant,
+          sortSelected: this.data.sortList[e.currentTarget.dataset.index].sort
         })
       }
     });
   },
-  clearSelectedNumb: function () {
+  clearSelectedNumb() {
     this.setData({
       characteristicSelected: [false],
       discountSelected: null,
       selectedNumb: 0
     })
   },
-  characteristicSelected: function (e) {
+  characteristicSelected(e) {
     var info = this.data.characteristicSelected;
     info[e.currentTarget.dataset.index] = !info[e.currentTarget.dataset.index];
     this.setData({
@@ -164,7 +162,7 @@ Page({
     })
     console.log(e.currentTarget.dataset.index);
   },
-  discountSelected: function (e) {
+  discountSelected(e) {
     if (this.data.discountSelected != e.currentTarget.dataset.index){
       this.setData({
         discountSelected: e.currentTarget.dataset.index,
@@ -177,27 +175,27 @@ Page({
       })
     }
   },
-  onTapTag: function (e) {
+  onTapTag(e) {
     this.setData({
       selected: e.currentTarget.dataset.index
     });
   },
-  mask1Cancel: function () {
+  mask1Cancel() {
     this.setData({
       mask1Hidden: true
     })
   },
-  mask2Cancel: function () {
+  mask2Cancel() {
     this.setData({
       mask2Hidden: true
     })
   },
-  onOverallTag: function () {
+  onOverallTag() {
     this.setData({
       mask1Hidden: false
     })
   },
-  onFilter: function () {
+  onFilter() {
     this.setData({
       mask2Hidden: false
     })
@@ -205,14 +203,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad(options) {
+    console.log(api)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady() {
   
   },
 
@@ -220,13 +218,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/info",
-      method: "GET",
-      success: function (res) {
-        that.setData({
-          restaurant: res.data.data.restaurant,
+    util.request(api.info).then(res => {
+      console.log(res)
+      if (res.success) {
+        this.setData({
+          restaurant: res.data.restaurant,
           location: wx.getStorageSync('location')
         })
       }
